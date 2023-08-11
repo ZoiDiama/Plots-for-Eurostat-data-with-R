@@ -1,0 +1,377 @@
+#libraries
+library(readxl)
+library (dplyr)
+library(tidyverse)
+library(ggtext)
+library(extrafont)
+library(tidyr)
+library(ggrepel)
+library(treemapify)
+library("viridis") 
+
+Data <- read_excel("Data.xlsx")#The data were imported from my local driver.
+
+#1. Line chart
+## Setting the parameters for the background.
+par(bg = '#CBDCE1',# sets the background color of the plot
+    xpd=FALSE, #plot elements outside the plotting region will not be displayed.
+    mar = c(5, 4, 3, 5)) #sets the margins of the plot. 
+
+## Creating  the line plot using the plot() function from base R.
+plot1<-plot(Data$Year, Data$Total, # data
+           type="l", # specifies that we want to create a line plot.
+           las=1, # sets the orientation of the axis labels to be horizontal
+           xlim=c(2004,2018), # sets the limits of the x-axis from 2004 to 2018
+           ylim=c(80,120),# sets the limits of the y-axis from 80 to 120
+           xlab=" ", xaxt="n",ylab=" ",#sets the x-axis  and y-axis labels to be a space character, since we do not want to display a label. 
+           col="#003366", # sets the colour of the line
+           lwd = 3) # sets the width of the line. 
+
+#adding two additional lines where H is the column with Hazardous chemicals to health while E is the column with the hazardous chemicals to environment
+lines(Data$Year, Data$H,col="#990033",lwd = 3)
+lines(Data$Year, Data$E,col="#006600",lwd = 3)
+
+#Adjusting how the x axis value will be presented
+axis(side=1, at=c(2004, 2006,2008,2010,2012,2014,2016,2018))
+
+#Setting the title and subtitle of the plot
+title(main="Production of chemicals in the EU", col.main='#09818E', adj=0,
+      sub="source: Eurostat",cex=0.8)
+
+#Creating a legend for a plot with three lines, each with a different label (legend), color (col), line type (lty), and line width (lwd).
+legend(x="topright", 
+       legend=c("Hazardous to the environment",
+                "Hazardous and non-hazardous - Total","Hazardous to health"),
+       col=c("#006600","#003366","#990033"),
+       lty=c(1,1,1),lwd=c(3,3,3),box.lty=1,cex=0.7)
+
+#Adding a text label to the top of the plot (side=3) with the text "EU-28,2004=100" left-aligned (adj=0). 
+mtext("EU-28,2004=100 | unit of measure: million tonnes", side=3,adj=0,cex=0.7)
+
+# Drawing the grid dashed lines
+grid(NULL, NULL, lty = "dashed", col = "white",lwd = 0.5)
+
+
+## 2. Dumbbell chart with gglpot2
+
+Data <- read_excel("Data.xlsx",sheet = "WER")#The data were imported from my local driver.
+
+#Data wrangling
+colnames(Data)[1]<-"Country" #rename the first column
+
+df<-Data %>% 
+  mutate(diff = Women - Men) %>% #calculate the difference of the employment rate between the Men and Women
+  mutate(group = case_when(# Icreated this group because I wanted to group them based on the difference, however, I did not use them in the end. 
+    abs(diff) > 20 ~ ">20",
+    abs(diff)<=20 & abs(diff) >15 ~ "15-20",
+    abs(diff)<=15 & abs(diff) >10 ~ "10-15",
+    abs(diff)<=10 & abs(diff) >=5 ~ "5-10",
+    abs(diff)<5 ~ "<5"),
+    # Convert to factor
+    group = factor(
+      group,
+      level = c(">20", "15-20","10-15","5-10","<5"))) %>% 
+  gather(Gender, Value, Men:Women) #get into long format 
+
+Males <- df %>%
+  filter(Gender == "Men")
+Females <- df %>%
+  filter(Gender == "Women")
+
+plot2 <- ggplot(df)+
+  geom_segment(data = Males,#creates a set of line segments in the plot
+               aes(x = Value, y = reorder(Country,-diff),
+                   yend = Females$Country, xend = Females$Value),
+               color = "#aeb6bf",
+               size = 2, 
+               alpha = .5) +
+    geom_point(aes(x = Value, y = Country, color = Gender), #create a scatter plot of data points
+             size = 3, show.legend = TRUE)+
+scale_y_discrete(position = "left")+
+  scale_x_continuous(breaks = seq(40, 100, 10),# customize the x-axis of a plot
+                     labels = c("40","50","60","70","80","90","100"),
+                     limits = c(40, 100), 
+                     expand = c(0, 0))+
+scale_color_manual(values = c("#246EB7","#F06723"))+ #colouring the data points
+  labs(title = "Employment rate of women and men in the EU,2018", 
+       subtitle = "(as % of the population aged 20 to 64)",
+       caption = "Source: Eurostat",
+       x = "%")
+plot2+
+    theme(plot.margin = margin(1, 3, 0.5, 1, unit = "mm"),
+        plot.title = element_text(hjust = 0,colour = "black",
+                                  size=11,face="bold"),
+        plot.title.position = "plot",
+        plot.subtitle = element_text(margin = margin(b = 10),
+                                     hjust = 0,size=9,colour = "black"),
+        plot.caption = element_text(hjust = 1,colour="black"),
+        axis.title.y = element_blank(),
+        strip.text.y = element_blank(),
+    strip.placement = "outside",
+        legend.position = "bottom",
+        legend.text=element_text(size = 8,colour="black"),
+        legend.title = element_blank(),
+        legend.box.margin = margin(1, 6, 1, 6),
+        legend.box.just ="center",
+        legend.justification = "center",
+        legend.direction = "horizontal",
+        legend.key.size = unit(0.25, 'cm'),
+        legend.spacing.x = unit(0.10, 'cm'),
+        legend.box = "vertical",
+        panel.grid.major = element_blank(), 
+        panel.grid.minor= element_blank(), 
+        panel.grid.major.x = element_line(color = "#e6e6e6",size = 0.5),
+        panel.background = element_rect(fill = "white"),
+        axis.ticks=element_blank(),
+        panel.grid.major.y = element_line(linetype = 3, color = 'grey80'),
+        axis.text.y = element_text(margin = margin(r = 50)),
+        plot.background = element_rect(fill = "white"))
+
+
+
+## 3. Barchart with R base
+
+#I used the same dataset as in Section 2
+#Data wrangling to use different coulour for the EU
+fill_colors<-c()
+for(i in 1:length(Data$Country)){ #length it gives the number of rows
+  if(Data$Country[i]=="EU"){
+    fill_colors<-c(fill_colors, "#CCCCCC")
+  } else {
+    fill_colors<-c(fill_colors, "#78B2BF")
+  }
+}
+
+
+par(bg = 'white',mar = c(6, 2.5, 3, 2))
+plot3<-barplot(Data$Women, names.arg=Data$Country,las=2,
+               main="Employment rate of women and men in the EU, 2018",
+               ylim=c(0,100),col=fill_colors,border =NA,space=0.25)
+mtext("(as % of the population aged 20 to 64)",side=3)
+points(plot3,Data$Men,col="#FF9900",pch=19,)
+legend(x="topright", legend=c("Women","Men"), 
+       col=c("#78B2BF","#FF9900"),
+       lty=c(1,1),lwd=c(3,3),box.lty=0,cex=0.8,pch = c(NA, 1))
+
+
+
+## 4. Line chart with R Base plot
+
+
+Data <- read_excel("Data.xlsx",sheet = "Infuenza")#The data were imported from my local driver.
+
+par(bg = '#18335E',mar = c(5, 4, 5, 5))# adding colour to the background
+plot(Data$Year, Data$Over, type="l",las=1,
+     bty = "n",#removes the box around the plot area.
+     ylim=c(0,80),
+     xlab="Year",ylab="Standardised rate",#adds labels to the x-axis and y-axis
+     col="white",lwd = 3,
+     sub="source: Eurostat",
+     col.lab="white", col.sub="white",col.axis="white")#sest the color of the plot title, axis labels, subtitle, and axis lines to white.
+
+title("Standardised rate of deaths from influenza by age group \nin the EU", adj=0,col.main="white",# adjusting and colouring the title
+      line = 2)#sets the title to be positioned two lines of text above the default position
+  
+
+lines(Data$Year,Data$Less,col="#1FA0DA",lwd = 3,pch = c(1, 1)) # adds a new line
+points(Data$Year, Data$Over, pch = 16, #pecifies that solid circles should be used for the points.
+       col = "white", cex = 1.5)
+points(Data$Year,Data$Less, pch = 16, col = "#1FA0DA", cex = 1.5)
+
+mtext("Number of deaths per million inhabitants",adj=0,col="white",side=3)
+
+grid(NA, 5, lwd = 1) # grid only in y-direction
+
+legend(x="topright", legend=c("Less than 65 years","65 years or over"), 
+       col=c("#1FA0DA","white"),ncol = 2,
+       lty=c(1,1),lwd=c(3,3),box.lty=0,cex=0.8,text.col="white",pch = c(1, 1))
+
+
+## 5. Small multiples pie charts with ggplot2
+
+Data <- read_excel("Data.xlsx",sheet = "TeahcersSex")#The data were imported from my local driver.
+
+#Data wrangling
+Data$Females<-Data$Females*100
+Data$Males<-Data$Males*100
+Data$Country<-as.factor(Data$Country)
+long_D <- Data %>% gather(Gender, Value, Females:Males)
+
+
+# Basic piechart
+plot5<-ggplot(long_D, aes(x = factor(1), y = Value, fill = Gender)) +
+  geom_bar(width=1,stat="identity")+
+  facet_wrap(~ Country)
+
+pie<-plot5 + coord_polar("y", start=0)+
+  scale_fill_manual(values=c("#F8981D", "#4081C3"))
+
+
+pie+ labs(title = "Primary to upper secondary teachers by sex, 2018", 
+          subtitle = "(% of total)",
+          caption = "Source: Eurostat") +
+  coord_polar("y") +
+  theme_void()+
+  theme(plot.margin = margin(1, 1, 1, 1, unit = "mm"),
+        plot.title = element_text(hjust = 0,colour = "white",size=11,face="bold"),
+        plot.title.position = "plot",
+        plot.subtitle = element_text(margin = margin(b = 10),
+                                     hjust = 0,size=9,colour = "white"),
+        plot.caption = element_text(hjust = 1,colour="white"),
+        strip.text = element_text(color = "white",size=8),
+        legend.position = "bottom",
+        legend.text=element_text(size = 8,colour="white"),
+        legend.title = element_blank(),
+        legend.box.margin = margin(1, 6, 1, 6),
+        legend.box.just ="center",
+        legend.justification = "center",
+        legend.direction = "horizontal",
+        legend.key.size = unit(0.25, 'cm'),
+        legend.spacing.x = unit(0.10, 'cm'),
+        legend.box = "vertical",
+        panel.spacing = unit(0.5, "mm"),
+        plot.background = element_rect(fill = "#015A68"))
+
+## 6. Stacked bar chart with ggplot
+Data <- read_excel("Data.xlsx", sheet = "TeachersAge")
+Data$Country<-as.factor(Data$Country)
+Data$Country <- reorder(Data$Country, rowSums(Data[-1]))
+long_DF <- Data %>% gather(Age, Value, Age50:Age65) %>% 
+  mutate(Value=Value*100)
+
+plot6<-ggplot(long_DF, aes(fill=Age, y=Value, x=Country)) + 
+  geom_bar(position="stack", stat="identity") +
+  labs(title = "Primary to upper secondary teachers by age group, 2018",
+       subtitle = "% of total",
+       y="%",fill="Age group", 
+       caption = "Source: Eurostat")+
+  scale_fill_manual(name="Age group",
+                      breaks=c("Age50","Age55","Age60","Age65"), 
+                      labels = c("50-54 years", "55-59 years",
+                      "60-64 years","65 years or over"),
+                    values = c("#034C8C", "#F294C8", "#0468BF","#F23005"))
+
+plot6+theme_void()+
+  theme(
+    plot.margin = margin(1, 6, 1, 6, unit = "mm"),
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1,colour = "black"),
+    axis.text.y = element_text(size=10,colour = "black"),
+    plot.title = element_text(hjust = 0,colour = "black",size=11,face="bold"),
+    plot.title.position = "plot",
+    plot.subtitle = element_text(margin = margin(b = 10),
+                                hjust = 0,size=9,colour = "black"),
+    plot.caption = element_text(hjust = 1,colour="black"),
+    legend.position = "bottom",
+                legend.text=element_text(size = 8,colour="black"),
+                legend.title = element_blank(),
+                legend.box.margin = margin(1, 6, 1, 6),
+                legend.box.just ="center",
+                legend.justification = "center",
+                legend.direction = "horizontal",
+    legend.key = element_blank(),
+                legend.spacing.x = unit(0.10, 'cm'),
+                    legend.box = "vertical",
+    panel.grid.major.y = element_line(color = "black",size = 0.1),
+                plot.background = element_rect(fill = "#F2EADF"))+
+  guides(
+    color = guide_legend(ncol = 2) # set number of columns to 2
+  )
+
+
+
+## 7. 100% stacked barchart with ggplot2
+
+Data <- read_excel("Data.xlsx", sheet = "HH with children")
+long_dt<-Data%>%gather(W,Value,FT:NW)
+
+plot7<-ggplot(long_dt, aes(fill=W, y=Value, x=Category,label=Value)) + 
+  geom_bar(position="stack", stat="identity") +
+  theme(axis.text.x = element_text(angle = 0))+
+  geom_text(size = 3, position = position_stack(vjust = 0.5),colour="white")+
+  labs(title = "Distribution of adults in households with young children,by working pattern \nof the household's adult members, 2019",
+            subtitle = "(% of adults living in each type of household)",
+            y="%", x="Households",
+            fill="", 
+            caption = "Source: Eurostat")+
+  scale_x_discrete(breaks=c("H1","H2","H3"),
+                   labels=c("with 1 child", "with 2 children", " with 3 children or more"))+
+  scale_fill_manual(values = c("#6E3C5F", "#E7B949", "#136475","#5C429B"),name="",breaks=c("FPT","FT","NW","PT"), 
+                    labels = c("All adults working full time",
+                               "At least one adult working part time, all other adults (if any) working full time",
+                               "At least one adult working and one adult not working",
+                               "All adults not working (all households)"))
+
+plot7+
+  theme_void()+
+  theme(
+    plot.margin = margin(1, 10, 1, 6, unit = "mm"),
+    axis.text.x = element_text(size=10,colour = "black"),
+    legend.position="bottom",
+    legend.direction = "vertical",
+    plot.background = element_rect(fill = "white"))
+
+
+## 8. Scatterplot
+Data <- read_excel("Data.xlsx", sheet = "scatterplot")
+colnames(Data)[1]<-"Country"
+
+plot8<-ggplot(Data, aes(x=GDP, y=Years)) +
+  geom_point()+
+  geom_text_repel(aes(label = Country), size = 3)+
+  scale_y_continuous(breaks = seq(25,45, 1),# customize the x-axis of a plot
+                     #labels = c("25","30","35","40","45"),
+                     limits = c(25, 45), 
+                     expand = c(0, 0))
+
+
+plot8 + labs(title = "Duration of working life versus GDP per capita, 2018",
+                        y="Working years", x="GDP per capita",         fill="", caption = "Source: Eurostat")+
+  geom_point(size = 4, color ="red")+
+theme_light()
+
+
+
+## 9. Treemap
+Data <- read_excel("Data.xlsx", sheet = "AccountWorkers")
+Data<-Data %>% mutate(Percentage=Percentage*100) #convert to percentages
+
+plot9<-ggplot(Data, aes(area = Percentage, fill = Percentage,
+       label = paste(Activity, Percentage, sep = "\n"))) +
+  geom_treemap() +
+  geom_treemap_text(colour = "white", #adjusting the text
+                    place = "centre",
+                    size = 10,
+                    grow = F, # constraints the output text to a single line
+                    reflow = T) + #reflows the input text by breaking it into lines to fit the specified width
+  labs(title="Own account workers by economic activity in the EU, 2019",
+       subtitle = "(as % of total account workers)",
+       caption = "Source:Eurostat")+
+  theme(legend.position = "none")
+
+plot9+scale_fill_viridis_c(option = "E",direction = -1) #changing the colours of the treemap
+  
+
+## 10. Horizontal barplot
+
+Data <- read_excel("Data.xlsx", sheet = "Dependency")
+
+options(digits=2)
+par(oma=c(0,0,0,0)) # all sides have 3 lines of space
+par(mar = c(5, 8, 4, 2) + 0.1)
+
+
+plot<-barplot(rev(Data$Var), names.arg=rev(Data$Country), 
+              las=1,xlim=c(0,70),cex.names=0.5,
+              col="#485683",horiz = TRUE,beside=TRUE,space=0.3,
+              col.axis = "black",
+              border = "#485683")
+mtext("(%)", side=3,col="black")
+title(main="Projected old-age dependency ratio, 2100",
+      sub="source: Eurostat",
+      col.main = "black",
+      col.sub="black")
+axis(side=1,col="white",at=c(seq(from=0,to=70,by=10)))
+abline(v=seq(0, 70, by=10), col='white', lwd=2)
+text(plot, Data$Var + 2*sign(Data$Var), labels=Data$Var, xpd=TRUE)
+
+
