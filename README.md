@@ -36,25 +36,53 @@ To create the line chart, I downloaded the data from Eurostat and saved it as an
 |Reference |For more information about the production of chemicals in the EU, visit this [link](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Chemicals_production_and_consumption_statistics).
 
 ### Code & plot
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L14-L52)
+<img width="479" alt="1" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/15b7d3c0-b3c6-4083-be1f-268874832d46">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L14-L52).
 
 ## 2. Dumbbell chart with gglpot2
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L55-L128)
+<img width="539" alt="2" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/d102a1c6-186c-4230-aa7d-1bd55e24b588">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L55-L128).
+
 ## 3. Barchart with R base
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L132-L154)
+<img width="542" alt="3" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/4b4ef8aa-5238-4d2f-a340-756f61aaf5d1">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L132-L154).
+
 ## 4. Line chart with R Base plot
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L158-L187)
+<img width="491" alt="4" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/96a4bd9d-cf19-4f79-ad01-2dd5c5b1a602">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L158-L187).
+
 ## 5. Small multiples pie charts with ggplot2
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L190-L233)
+<img width="310" alt="5" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/aa53f397-c49b-4fc8-ba9d-a7837631826d">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L190-L233).
+
 ## 6. Stacked bar chart with ggplot
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L235-L278)
+<img width="504" alt="6" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/b8a14966-ddfb-438c-919f-42a0533a6414">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L235-L278).
+
 ## 7. 100% stacked barchart with ggplot2
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L282-L311)
+<img width="475" alt="7" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/3cb97fd8-00cb-4799-b8ea-f9e92d55ccd9">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L282-L311).
+
 ## 8. Scatterplot
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L314-L330)
+<img width="509" alt="8" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/784d4d82-2f4c-4c3c-9014-fea928398256">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L314-L330).
+
 ## 9. Treemap
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L334-L351)
+<img width="502" alt="9" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/4cb54de0-52f6-44e0-bf4d-09cd0c3bf0d5">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L334-L351).
+
 ## 10. Horizontal barplot
-Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L354-L375)
+<img width="513" alt="10" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/cad87b2c-8530-40d9-9b1f-b5951bbda688">
+
+Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L354-L375).
 
 
