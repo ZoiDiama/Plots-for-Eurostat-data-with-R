@@ -1,6 +1,4 @@
 # Visualizing Eurostat: Unleashing Insights with R-powered Plots
-Experience the magic of data visualization with my Eurostat project! Join me on an exciting journey as I take my first steps in using R to recreate Eurostat's visuals. 
-
 ![Collage Maker-17-Jul-2023-04-14-PM-3913](https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/7477a612-47d0-4273-80b3-1fb8d0687e9b)
 
 ## Introduction
