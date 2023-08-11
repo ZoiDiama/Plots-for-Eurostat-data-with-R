@@ -31,7 +31,7 @@ To create the line chart, I downloaded the data from Eurostat and saved it as an
 |Topic	|Production of chemicals in the EU|
 |Publication date	|21/1/2020|
 |Link	|https://ec.europa.eu/eurostat/web/products-eurostat-news/-/ddn-20200121-1|
-|Data	| Eurostat’s database: Production and consumption of chemicals by hazard class|
+|Data	| Eurostat’s database: [Production and consumption of chemicals by hazard class](https://ec.europa.eu/eurostat/databrowser/view/ENV_CHMHAZ__custom_6892428/default/table?lang=en)|
 |Variables | Hazardous and non-Hazardous-Total,Hazardous to health, Hazardous to environment,Year, Time|
 |Reference |For more information about the production of chemicals in the EU, visit this [link](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Chemicals_production_and_consumption_statistics).
 
@@ -41,11 +41,33 @@ To create the line chart, I downloaded the data from Eurostat and saved it as an
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L14-L52).
 
 ## 2. Dumbbell chart with gglpot2
+The second plot I’m sharing shows the employment rate of women and men in the European Union (EU) in 2018, highlighting the difference between the two rates. To create this visualization, I experimented with two different chart types - a dumbbell chart and a bar chart. In this section, I’ll describe the dumbbell chart.
+
+A dumbbell chart is a good choice for comparing the difference between two values across multiple categories. To create the dumbbell chart, I used the ggplot2 package in R. First, I imported the data from an Excel file and renamed the first column. Then, I calculated the difference between the employment rate of men and women and put the data into long format.
+
+Next, I used the ggplot function to create the dumbbell chart. Each country is represented by a pair of dots - one for men and one for women - and these dots are connected by a line, making it easy to see the difference between the employment rates of men and women for each country. The countries are ordered by the size of the difference in employment rates, with those having the largest differences at the top of the chart.
+
+To improve readability, I set the y-axis to show the countries, with a dash line grid. I also added a title and subtitle to the chart, as well as a caption to cite the data source. Finally, I colored the dots representing men and women differently and included a legend on the bottom of the chart to explain the colors.
+
+I spent a lot of time creating this chart, especially on formatting it properly. During the process, I consulted multiple sources to ensure that the chart was clear and informative.
+
+|Article|Details|
+|-------|-------|
+|Topic|Women’s employment in the EU|
+|Publication date|	6/3/2020|
+|Link|https://ec.europa.eu/eurostat/web/products-eurostat-news/-/EDN-20200306-1?inheritRedirect=true&redirect=%2Feurostat%2Fnews%2Fwhats-new|
+|Data|Eurostat’s database: [Employment and activity by sex and age - annual data](https://ec.europa.eu/eurostat/databrowser/view/LFSI_EMP_A$DV_881/default/table?lang=en)|
+|Variables|Employment rate,Geo,Sex|
+|Reference |For more information on Gender Statistics, visit this [link](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Gender_pay_gap_statistics) and this [one](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Gender_statistics). For the dumbbell chart, I used various sources but mainly this [one](https://r-graph-gallery.com/web-extended-dumbbell-plot-ggplot2.html).
+
+### Code & plot
 <img width="539" alt="2" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/d102a1c6-186c-4230-aa7d-1bd55e24b588">
 
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L55-L128).
 
 ## 3. Barchart with R base
+
+### Code & plot
 <img width="542" alt="3" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/4b4ef8aa-5238-4d2f-a340-756f61aaf5d1">
 
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L132-L154).
@@ -56,31 +78,43 @@ Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L158-L187).
 
 ## 5. Small multiples pie charts with ggplot2
+
+### Code & plot
 <img width="310" alt="5" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/aa53f397-c49b-4fc8-ba9d-a7837631826d">
 
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L190-L233).
 
 ## 6. Stacked bar chart with ggplot
+
+### Code & plot
 <img width="504" alt="6" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/b8a14966-ddfb-438c-919f-42a0533a6414">
 
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L235-L278).
 
 ## 7. 100% stacked barchart with ggplot2
+
+### Code & plot
 <img width="475" alt="7" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/3cb97fd8-00cb-4799-b8ea-f9e92d55ccd9">
 
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L282-L311).
 
 ## 8. Scatterplot
+
+### Code & plot
 <img width="509" alt="8" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/784d4d82-2f4c-4c3c-9014-fea928398256">
 
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L314-L330).
 
 ## 9. Treemap
+
+### Code & plot
 <img width="502" alt="9" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/4cb54de0-52f6-44e0-bf4d-09cd0c3bf0d5">
 
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L334-L351).
 
 ## 10. Horizontal barplot
+
+### Code & plot
 <img width="513" alt="10" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/cad87b2c-8530-40d9-9b1f-b5951bbda688">
 
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L354-L375).
