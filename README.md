@@ -1,15 +1,15 @@
-# Plots for Eurostat data with R
+# Visualizing Eurostat: Unleashing Insights with R-powered Plots
 Experience the magic of data visualization with my Eurostat project! Join me on an exciting journey as I take my first steps in using R to recreate Eurostat's visuals. 
 
 ![Collage Maker-17-Jul-2023-04-14-PM-3913](https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/7477a612-47d0-4273-80b3-1fb8d0687e9b)
 
 ## Introduction
 
-As a statistical consultant in a consultancy firm, I had the opportunity to work on an exciting project with Eurostat from 2020-2021. The project involved providing statistical articles for their ["What's New"](https://ec.europa.eu/eurostat/web/main/news/news-articles) section, and I played a vital role in analyzing data, writing articles, and collaborating with the graphic designer to produce visuals using Adobe Illustrator. We submitted over 100 articles and double the number of visuals, which were published on Eurostat's website.
+As a statistical consultant in a consultancy firm, I had the amazing opportunity to collaborate with Eurostat on an exciting project from 2020-2021. The project involved providing statistical articles for their ["What's New"](https://ec.europa.eu/eurostat/web/main/news/news-articles) section, and I played a vital role in analyzing data, writing articles, and collaborating with the graphic designer to produce visuals using Adobe Illustrator. We submitted over 100 articles and double the number of visuals, which were published on Eurostat's website.
 
-During the project, I seized the chance to enhance my R skills by recreating some of the visuals using R for my personal archive. I explored various types of visuals, which helped me gain a better understanding of how to use R effectively to create a wide range of data visualizations. All data used for this project are openly accessible to the public.
+Inspired by this experience, I decided to further enhance my skills by recreating some of the visuals using R for my personal archive. My goal was to reacreate the exact same visual or in same cases I created new ones. Exploring various visualization techniques, I gained valuable insights into effectively utilizing R to create a diverse range of data visualizations. All the data used in the project are freely accessible to the public.
 
-This post will showcase ten of these graphs, accompanied by the R code. You will discover the challenges I encountered, such as formatting data to meet R's requirements, selecting appropriate colors and fonts for charts, and adjusting plot sizes and labels for readability. However, these challenges also provided me with ample opportunities to learn new techniques and problem-solving strategies.
+In this post, I present ten of these compelling graphs accompanied by the R code. While working on these visuals, I encountered various challenges, including data formatting, color and font selection for charts, and optimizing plot sizes and labels for better readability. Yet, these challenges provided me with invaluable opportunities to learn new techniques and develop effective problem-solving strategies.
 
 I hope you enjoy this portfolio and find these visualizations informative and engaging.
 
@@ -17,7 +17,6 @@ Thank you for taking the time to explore my work.
 
 Let's get started!
 
-Before we start, check [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L1-L10) the libraries that I used.
 
 ## 1. Line chart with R base plot
 
@@ -41,15 +40,11 @@ To create the line chart, I downloaded the data from Eurostat and saved it as an
 Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R/blob/1f8a8dc1e1f2a93829651d7e78dbe055214985a4/Code/all_visuals#L14-L52).
 
 ## 2. Dumbbell chart with gglpot2
-The second plot I’m sharing shows the employment rate of women and men in the European Union (EU) in 2018, highlighting the difference between the two rates. To create this visualization, I experimented with two different chart types - a dumbbell chart and a bar chart. In this section, I’ll describe the dumbbell chart.
+The second plot I’m sharing shows the employment rate of women and men in the European Union (EU) in 2018, highlighting the difference between the two rates. To create this visualization, I experimented with two different chart types - a dumbbell chart and a bar chart. In this section, I’ll describe the dumbbell chart. My preference was to use a dumbbell chart, becaause it is a good choice for comparing the difference between two values across multiple categories. 
 
-A dumbbell chart is a good choice for comparing the difference between two values across multiple categories. To create the dumbbell chart, I used the ggplot2 package in R. First, I imported the data from an Excel file and renamed the first column. Then, I calculated the difference between the employment rate of men and women and put the data into long format.
+To create the dumbbell chart, I used the ggplot2 package in R. First, I imported the data from an Excel file and renamed the first column. Then, I calculated the difference between the employment rate of men and women and put the data into long format. Next, I used the ggplot function to create the dumbbell chart. Each country is represented by a pair of dots - one for men and one for women - and these dots are connected by a line, making it easy to see the difference between the employment rates of men and women for each country. The countries are ordered by the size of the difference in employment rates, with those having the largest differences at the top of the chart. 
 
-Next, I used the ggplot function to create the dumbbell chart. Each country is represented by a pair of dots - one for men and one for women - and these dots are connected by a line, making it easy to see the difference between the employment rates of men and women for each country. The countries are ordered by the size of the difference in employment rates, with those having the largest differences at the top of the chart.
-
-To improve readability, I set the y-axis to show the countries, with a dash line grid. I also added a title and subtitle to the chart, as well as a caption to cite the data source. Finally, I colored the dots representing men and women differently and included a legend on the bottom of the chart to explain the colors.
-
-I spent a lot of time creating this chart, especially on formatting it properly. During the process, I consulted multiple sources to ensure that the chart was clear and informative.
+To improve readability, I set the y-axis to show the countries, with a dash line grid. I also added a title and subtitle to the chart, as well as a caption to cite the data source. Finally, I colored the dots representing men and women differently and included a legend on the bottom of the chart to explain the colors. I spent a lot of time creating this chart, especially on formatting it properly. During the process, I consulted multiple sources to ensure that the chart was clear and informative.
 
 |Article|Details|
 |-------|-------|
@@ -68,9 +63,7 @@ Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R
 ## 3. Barchart with R base
 For the third visualization, I recreated the chart from section 2, but this time using R base to create a bar chart. Since the details of the data and purpose of the chart are the same, I will only provide the code and the plot.
 
-To create the chart, I used the same dataset as in section 2 and used data wrangling to assign different colors to the EU average to be easily compared with the rest of the countries. Then, I used the R base plot function to create the bar chart. The chart shows the employment rate of women and men in the EU for 2018, with the countries listed on the x-axis and the employment rate on the y-axis.
-
-To make the chart more readable, I set the background color to white and adjusted the margins. I added a title to the chart and included a unit of measurement in the y-axis label. I also used different colors for the bars representing women and men and added a legend to explain the colors.
+To create the chart, I used the same dataset as in section 2 and used data wrangling to assign different colors to the EU average to be easily compared with the rest of the countries. Then, I used the R base plot function to create the bar chart. The chart shows the employment rate of women and men in the EU for 2018, with the countries listed on the x-axis and the employment rate on the y-axis. To make the chart more readable, I set the background color to white and adjusted the margins. I added a title to the chart and included a unit of measurement in the y-axis label. I also used different colors for the bars representing women and men and added a legend to explain the colors.
 
 ### Code & plot
 <img width="542" alt="3" src="https://github.com/ZoiDiama/My-tidytuesday-projects/assets/139105670/4b4ef8aa-5238-4d2f-a340-756f61aaf5d1">
@@ -80,9 +73,7 @@ Check the code [here](https://github.com/ZoiDiama/Plots-for-Eurostat-data-with-R
 ## 4. Line chart with R Base plot
 For my fourth visualization, I recreated a graph from an article about EU citizens who died from influenza. The data I used was downloaded from Eurostat's website and saved as an Excel file on my local drive. The variables I focused on were the cause of death standardized death rate, countries, and age group. Since the article focused on trend analysis, I decided to recreate the original visual.
 
-To create the graph, I used the R base plot function and adjusted the margins and background color to a dark blue. The graph shows the standardized rate of deaths from influenza by age group in the EU, with years listed on the x-axis and the death rate on the y-axis.
-
-To make the graph more readable, I removed the box around the plot area and added white lines and labels to the axis. I also added a title and subtitle to the graph and used different colors for the lines representing the death rate for those under 65 years old and those aged 65 or over.
+To create the graph, I used the R base plot function and adjusted the margins and background color to a dark blue. The graph shows the standardized rate of deaths from influenza by age group in the EU, with years listed on the x-axis and the death rate on the y-axis.To make the graph more readable, I removed the box around the plot area and added white lines and labels to the axis. I also added a title and subtitle to the graph and used different colors for the lines representing the death rate for those under 65 years old and those aged 65 or over.
 
 |Article|Details|
 |-------|-------|
@@ -142,8 +133,7 @@ I downloaded the data from Eurostat’s website and saved it as an Excel file on
 |Publication date	|1/5/2020|
 |Link|https://ec.europa.eu/eurostat/web/products-eurostat-news/-/DDN-20200501-1
 |Data|	Eurostat’s database: [Number of adults by working status within households, number of children and age of youngest child](https://ec.europa.eu/eurostat/databrowser/bookmark/0b7dd284-cfaf-4a6b-adb3-56af1cb3c2ee?lang=en)|
-|Variables|adults by working status within households, number of children and age of youngest child
-type of household|
+|Variables|adults by working status within households, number of children and age of youngest child type of household|
 |Reference|Non applicable|
 
 ### Code & plot
