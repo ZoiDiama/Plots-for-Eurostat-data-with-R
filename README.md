@@ -7,13 +7,9 @@ As a statistical consultant in a consultancy firm, I had the amazing opportunity
 
 Inspired by this experience, I decided to further enhance my skills by recreating some of the visuals using R for my personal archive. My goal was to reacreate the exact same visual or in same cases I created new ones. Exploring various visualization techniques, I gained valuable insights into effectively utilizing R to create a diverse range of data visualizations. All the data used in the project are freely accessible to the public.
 
-In this post, I present ten of these compelling graphs accompanied by the R code. While working on these visuals, I encountered various challenges, including data formatting, color and font selection for charts, and optimizing plot sizes and labels for better readability. Yet, these challenges provided me with invaluable opportunities to learn new techniques and develop effective problem-solving strategies.
+In this post, I present ten of these compelling graphs accompanied by the R code. Thank you for taking the time to explore my work.
 
-I hope you enjoy this portfolio and find these visualizations informative and engaging.
 
-Thank you for taking the time to explore my work.
-
-Let's get started!
 
 
 ## 1. Line chart with R base plot
