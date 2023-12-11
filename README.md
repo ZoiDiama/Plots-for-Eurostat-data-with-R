@@ -7,7 +7,7 @@ As a statistical consultant in a consultancy firm, I had the amazing opportunity
 
 Inspired by this experience, I decided to further enhance my skills by recreating some of the visuals using R for my personal archive. My goal was to reacreate the exact same visual or in same cases I created new ones. Exploring various visualization techniques, I gained valuable insights into effectively utilizing R to create a diverse range of data visualizations. All the data used in the project are freely accessible to the public.
 
-In this post, I present ten of these compelling graphs accompanied by the R code. Thank you for taking the time to explore my work.
+In this post, I present ten of the graphs accompanied by the R code. Thank you for taking the time to explore my work.
 
 
 
